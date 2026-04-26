@@ -8,13 +8,9 @@ import { clearAuthSession } from "../lib/auth";
 
 interface ApprovedCreditState {
   score: number;
-  decisionStatus?: DecisionStatus;
-  creditLimit?: number;
-  approvedValue?: number;
+  decisionStatus: DecisionStatus;
+  approvedValue: number;
   reason?: string;
-  parcela?: string;
-  taxa?: string;
-  prazo?: string;
 }
 
 function CreditApproved() {
@@ -23,20 +19,10 @@ function CreditApproved() {
 
   const handleLogout = () => {
     clearAuthSession();
-    navigate('/login');
+    navigate("/login");
   };
 
   const credit = state?.credit as ApprovedCreditState | undefined;
-
-  const approvedAmount = credit?.creditLimit ?? credit?.approvedValue ?? 0;
-  const isApproved = credit?.decisionStatus === "approved" || credit?.decisionStatus === "approved_with_risk";
-
-  const getStatusLabel = (status?: DecisionStatus) => {
-    if (status === "approved") return "Aprovado";
-    if (status === "approved_with_risk") return "Aprovado com ressalvas";
-    if (status === "denied") return "Negado";
-    return "Em análise";
-  };
 
   if (!credit) {
     return (
@@ -51,14 +37,33 @@ function CreditApproved() {
     );
   }
 
+  const isApproved =
+    credit.decisionStatus === "approved" ||
+    credit.decisionStatus === "approved_with_risk";
+
+  const getStatusLabel = (status: DecisionStatus) => {
+    if (status === "approved") return "Aprovado";
+    if (status === "approved_with_risk") return "Aprovado com ressalvas";
+    if (status === "denied") return "Negado";
+    return "Em análise";
+  };
+
   return (
     <div className="auth-page">
       <div className="row g-0 login-card auth-card auth-card--approved shadow-lg w-100 overflow-hidden">
-        {/* LADO ESQUERDO - VISUAL */}
-        <div className="col-lg-5 d-none d-lg-flex flex-column justify-content-center align-items-center text-white p-5 bg-gradient-bank">
-          <i className="bi bi-check-circle-fill mb-4" style={{ fontSize: "70px" }}></i>
 
-          <h2 className="fw-bold text-center">{isApproved ? "Crédito aprovado!" : "Crédito não aprovado"}</h2>
+        {/* ESQUERDA - VISUAL */}
+        <div className="col-lg-5 d-none d-lg-flex flex-column justify-content-center align-items-center text-white p-5 bg-gradient-bank">
+          <i
+            className={`bi ${
+              isApproved ? "bi-check-circle-fill" : "bi-x-circle-fill"
+            } mb-4`}
+            style={{ fontSize: "70px" }}
+          ></i>
+
+          <h2 className="fw-bold text-center">
+            {isApproved ? "Crédito aprovado!" : "Crédito não aprovado"}
+          </h2>
 
           <p className="text-center opacity-75 mt-3">
             {isApproved
@@ -67,17 +72,27 @@ function CreditApproved() {
           </p>
         </div>
 
-        {/* LADO DIREITO - DETALHES */}
+        {/* DIREITA - CONTEÚDO */}
         <div className="col-lg-7 p-4 p-md-5 d-flex flex-column justify-content-center">
+
           <div className="d-flex justify-content-end mb-3">
-            <button type="button" className="btn btn-outline-secondary btn-sm" onClick={handleLogout}>
+            <button
+              type="button"
+              className="btn btn-outline-secondary btn-sm"
+              onClick={handleLogout}
+            >
               Sair
             </button>
           </div>
 
           {/* MOBILE ICON */}
           <div className="d-lg-none text-center mb-4">
-            <i className="bi bi-check-circle-fill text-success" style={{ fontSize: "60px" }}></i>
+            <i
+              className={`bi ${
+                isApproved ? "bi-check-circle-fill text-success" : "bi-x-circle-fill text-danger"
+              }`}
+              style={{ fontSize: "60px" }}
+            ></i>
           </div>
 
           <h3 className="fw-bold mb-2 text-dark text-center text-lg-start">
@@ -90,11 +105,17 @@ function CreditApproved() {
               : "Confira os detalhes da análise abaixo."}
           </p>
 
-          {/* CARD DE INFORMAÇÕES */}
-          <div className="border rounded p-3 mb-4">
+          {/* CARD */}
+          <div className="border rounded p-3 mb-4 shadow-sm">
+
+            <div className="d-flex justify-content-between mb-2">
+              <span className="text-muted">Score</span>
+              <strong>{credit.score}</strong>
+            </div>
+
             <div className="d-flex justify-content-between mb-2">
               <span className="text-muted">Valor liberado</span>
-              <strong>R$ {approvedAmount.toLocaleString("pt-BR")}</strong>
+              <strong>R$ {credit.approvedValue.toLocaleString("pt-BR")}</strong>
             </div>
 
             <div className="d-flex justify-content-between mb-2">
@@ -102,30 +123,17 @@ function CreditApproved() {
               <strong>{getStatusLabel(credit.decisionStatus)}</strong>
             </div>
 
-            {credit.parcela && (
-              <div className="d-flex justify-content-between mb-2">
-                <span className="text-muted">Parcela</span>
-                <strong>{credit.parcela}</strong>
-              </div>
-            )}
+            <p className="small text-muted mt-3 mb-0">
+              {credit.decisionStatus === "approved" &&
+                "Crédito aprovado com base na sua análise financeira."}
 
-            {credit.taxa && (
-              <div className="d-flex justify-content-between mb-2">
-                <span className="text-muted">Taxa</span>
-                <strong>{credit.taxa}</strong>
-              </div>
-            )}
+              {credit.decisionStatus === "approved_with_risk" &&
+                "Crédito aprovado com algumas condições após análise."}
 
-            {credit.prazo && (
-              <div className="d-flex justify-content-between">
-                <span className="text-muted">Prazo</span>
-                <strong>{credit.prazo}</strong>
-              </div>
-            )}
+              {credit.decisionStatus === "denied" &&
+                "Não foi possível aprovar seu crédito neste momento."}
+            </p>
 
-            {credit.reason && (
-              <p className="small text-muted mb-0 mt-3">{credit.reason}</p>
-            )}
           </div>
 
           {/* BOTÕES */}
@@ -144,6 +152,7 @@ function CreditApproved() {
           >
             IR PARA INÍCIO
           </button>
+
         </div>
       </div>
     </div>
