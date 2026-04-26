@@ -46,7 +46,7 @@ function Register() {
     else if (formData.password.length < 8)
       newErrors.password = 'Mínimo 8 caracteres'
 
-    if (formData.confirmarSenha !== formData.senha)
+    if (formData.confirmarPassword !== formData.password)
       newErrors.confirmarPassword = 'Senhas não coincidem'
 
     setErrors(newErrors)
