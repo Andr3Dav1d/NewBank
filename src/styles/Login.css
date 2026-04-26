@@ -1,0 +1,136 @@
+.auth-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f5f7;
+  padding: 1rem;
+}
+
+.auth-page--padded {
+  padding-block: 1.5rem;
+}
+
+.login-card {
+  border-radius: 20px;
+  overflow: hidden;
+  border: none;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 1000px;
+  min-height: 600px;
+  background-color: #ffffff;
+  margin: 0;
+}
+
+.auth-card--simulator {
+  max-width: 900px;
+  min-height: 560px;
+}
+
+.auth-card--register,
+.auth-card--consent {
+  min-height: auto;
+}
+
+.auth-card--approved {
+  min-height: 560px;
+}
+
+.bg-gradient-bank {
+  background: linear-gradient(135deg, #1d3521 0%, #2e5a35 100%);
+}
+
+.form-control-custom {
+  background-color: #f3f4f6 !important;
+  border: none !important;
+  padding: 12px 15px !important;
+  border-radius: 10px !important;
+  font-size: 0.95rem;
+}
+
+.btn-login {
+  background-color: #1d3521 !important;
+  border: none !important;
+  padding: 12px !important;
+  border-radius: 10px !important;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-login:hover {
+  background-color: #2e5a35 !important;
+  transform: translateY(-2px);
+}
+
+.feature-tag {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.worker-img {
+  width: min(42vw, 150px);
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 991px) {
+  .auth-page {
+    align-items: flex-start;
+    padding: 1rem 0.9rem;
+  }
+
+  .auth-page--padded {
+    padding-block: 1rem;
+  }
+
+  .auth-card {
+    max-width: 720px;
+    min-height: auto;
+    border-radius: 18px;
+  }
+
+  .worker-img {
+    width: min(46vw, 140px);
+  }
+}
+
+@media (max-width: 767px) {
+  .auth-page {
+    padding: 0.75rem;
+  }
+
+  .auth-card {
+    max-width: 100%;
+    border-radius: 14px;
+  }
+
+  .form-control-custom {
+    font-size: 1rem;
+    min-height: 46px;
+  }
+
+  .feature-tag {
+    padding: 9px;
+    margin-bottom: 8px;
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-page {
+    padding: 0.5rem;
+  }
+
+  .auth-card {
+    border-radius: 12px;
+  }
+}

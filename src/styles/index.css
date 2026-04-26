@@ -1,0 +1,65 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --green-950: #0a1a0f;
+  --green-900: #0d2415;
+  --green-800: #163b21;
+  --green-700: #1e5230;
+  --green-600: #2d6e43;
+  --green-500: #3d8a56;
+  --green-400: #4ea86c;
+  --green-300: #72c28a;
+  --green-200: #a3d9b5;
+  --green-100: #d4f0de;
+  --green-50:  #edfbf2;
+
+  --neutral-950: #0a0a0a;
+  --neutral-900: #171717;
+  --neutral-800: #262626;
+  --neutral-700: #404040;
+  --neutral-600: #525252;
+  --neutral-500: #737373;
+  --neutral-400: #a3a3a3;
+  --neutral-300: #d4d4d4;
+  --neutral-200: #e5e5e5;
+  --neutral-100: #f5f5f5;
+  --neutral-50:  #fafafa;
+
+  --white: #ffffff;
+  --font: 'Inter', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--neutral-950);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--green-500);
+  color: var(--white);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--neutral-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--green-700);
+  border-radius: 3px;
+}
