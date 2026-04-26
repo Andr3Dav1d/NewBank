@@ -8,11 +8,11 @@ import {
   ANALYSIS_STAGES,
   formatCurrency,
   type CreditSimulatorData,
-} from "../../../NewBank-main/src/state/appState";
+} from "../../../NewBank/src/state/appState";
 
-import { api } from "../../../NewBank-main/src/lib/api";
-import { getAccessToken, getAuthUser } from "../../../NewBank-main/src/lib/auth";
-import type { DecisionStatus } from "../../../NewBank-main/src/lib/types";
+import { api } from "../../../NewBank/src/lib/api";
+import { getAccessToken, getAuthUser } from "../../../NewBank/src/lib/auth";
+import type { DecisionStatus } from "../../../NewBank/src/lib/types";
 
 interface CreditResult {
   score: number;
