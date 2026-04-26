@@ -176,15 +176,13 @@ function Login() {
                 </span>
                 <input
                   type="password"
-                  name="senha"
                   name="password"
                   className={`form-control form-control-custom ${errors.password ? 'is-invalid' : ''}`}
                   placeholder="Digite sua senha"
                   value={formData.password}
                   onChange={handleChange}
                 />
-                <div className="invalid-feedback">{errors.senha}</div>
-                              <div className="invalid-feedback">{errors.password}</div>
+                <div className="invalid-feedback">{errors.password}</div>
               </div>
             </div>
 

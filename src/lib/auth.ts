@@ -71,9 +71,7 @@ export function clearAuthSession(): void {
   localStorage.removeItem(CONSENT_KEY);
 }
 
-export function isAuthenticated(): boolean {
-  return Boolean(getAccessToken() && getAuthUser()?.id);
-}
+
 
 export function saveConsentState(consent: ConsentState): void {
   localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
@@ -90,8 +88,4 @@ export function getConsentState(): ConsentState | null {
   }
 }
 
-export function hasRequiredConsent(userId: string): boolean {
-  const consent = getConsentState();
-  if (!consent) return false;
-  return consent.userId === userId && consent.terms && consent.privacy;
-}
+
