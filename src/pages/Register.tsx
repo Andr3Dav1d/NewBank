@@ -65,7 +65,6 @@ function Register() {
         name: formData.nome.trim(),
         email: formData.email.trim(),
         cpf: formData.cpf.replace(/\D/g, ''),
-        password: formData.senha,
         password: formData.password,
       })
 
@@ -194,28 +193,26 @@ function Register() {
                   <div className="col-12 col-md-6">
                     <input
                       type="password"
-                      name="senha"
                       name="password"
                       className={`form-control ${errors.password && 'is-invalid'}`}
                       placeholder="Senha"
                       value={formData.password}
                       onChange={handleChange}
                     />
-                    <div className="invalid-feedback">{errors.senha}</div>
+                    <div className="invalid-feedback">{errors.password}</div>
                                       <div className="invalid-feedback">{errors.password}</div>
                   </div>
 
                   <div className="col-12 col-md-6">
                     <input
                       type="password"
-                      name="confirmarSenha"
                       name="confirmarPassword"
                       className={`form-control ${errors.confirmarPassword && 'is-invalid'}`}
                       placeholder="Confirmar senha"
                       value={formData.confirmarPassword}
                       onChange={handleChange}
                     />
-                    <div className="invalid-feedback">{errors.confirmarSenha}</div>
+                    <div className="invalid-feedback">{errors.confirmarPassword}</div>
                                       <div className="invalid-feedback">{errors.confirmarPassword}</div>
                   </div>
 
